@@ -172,12 +172,12 @@ app.layout = dbc.Container(
         html.Div(id='post-guess',children=[
             dbc.Row([
                 dbc.Col(html.A(dbc.Button('Try another city'),href='/'),width=3),
-                dbc.Col(html.A(dbc.Button('Show Me More',id='show-more-button'),href='#more-info-container'),width=3)
+                dbc.Col(dbc.Button('Show Me More',id='show-more-button'),width=3)
                 ],justify="center"
                 )],
             style={'display':'none'}),
         dbc.Row(dbc.Col(
-            html.A(id='more-info-container',children=html.Div(
+            html.Div(id='more-info-container',
                 style={"display":"none"},
                 children=[
                             # comparing
@@ -211,8 +211,8 @@ app.layout = dbc.Container(
                                     labelStyle={'display': 'inline-block'}
                                 ),width=3),
                         ],align='center')
-                ])))
-               )
+                ]))
+                )
             ])
 
 
