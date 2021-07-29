@@ -1,0 +1,60 @@
+body{
+    font-family: Avenir, sans-serif;
+    padding-bottom: 100px;
+    
+}
+
+.app-header-title {
+    padding-top:100px;
+    padding-left:0px;
+    padding-right:0px;
+    padding-bottom:50px;
+    text-align:center;
+    
+}
+
+.app-total-budget-par{
+    padding-top:25px;
+    padding-left:0px;
+    padding-right:0px;
+    padding-bottom:25px;
+    text-align:center;
+}
+
+.app-estimate-answer{
+    padding-left:25px;
+    padding-bottom:25px;
+    text-align:center;
+}
+
+.rc-slider{
+    background-color:#ffffff;
+}
+
+.rc-slider-handle {
+  border: 1;
+  border-color: #262626;
+  background-color: #000000
+}
+
+.rc-slider-rail {
+   background-color: #999999; 
+}
+
+.rc-slider-track {
+  background-color: #999999;
+}
+
+.rc-slider-dot {
+  border: 0;
+  background-color: #262626;
+}
+
+.rc-slider-dot.rc-slider-dot-active {
+  background-color: #262626;
+  border-color: #ff9966;
+}
+
+[disabled]{
+    display:None;
+}
