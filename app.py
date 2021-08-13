@@ -225,7 +225,7 @@ app.layout = html.Div(
                         ],justify='center'),
                     dbc.Row(dbc.Col(html.P('''For easier conversion, this number line shows the relationship between CRI and percent values:
                                             ''',style={'font-size':'20px','padding-top':'15px'}),width={'size':8,'offset':0}),justify='center'),
-                    dbc.Row(dbc.Col(html.Img(src='/CRIKey.PNG',width='60%',style={'border-bottom':'none'})),justify='center'),
+                    dbc.Row(dbc.Col(html.Img(src='/CRIKey.png',width='60%',style={'border-bottom':'none'})),justify='center'),
 
                 ],className='walkthrough'),
 
