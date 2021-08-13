@@ -135,6 +135,7 @@ app = dash.Dash(__name__,external_stylesheets=external_stylesheets)
 server = app.server
 server.wsgi_app = WhiteNoise(server.wsgi_app, root='static/')
             # Container for all layout
+app.title = "Carceral Resource Index"
 app.layout = html.Div(
         #children in container
         children=[
