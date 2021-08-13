@@ -396,30 +396,30 @@ app.layout = html.Div(
                         ]),
                     html.Div([
                             dbc.Row(dbc.Col(html.H4('Why CRI')),justify='center'),
-                            dbc.Row(dbc.Col(html.P('''Over the last several decades, cities all over the country have defunded healthcare, housing assistance, benefit programs,
-                                    substance use treatment, and community engagement, all of which have been shown to reduce crime.
+                            dbc.Row(dbc.Col(html.P('''Over the last several decades, many U.S. cities have defunded healthcare, housing assistance, benefit programs,
+                                    substance use treatment, and community engagement, all of which have been shown to prevent the need for carceral systems in the first place.
                                     To varying degrees, municipalities have all bought into the idea
-                                    that public safety is built on top of the threat of surveillance and punishment, state violence, and
-                                    putting people in cages. But decades of research have shown this approach has not made our communities
-                                    safer and healthier. The Carceral Resource Index is measure of where major cities around the country stand
-                                    currently: do city leaders that purport to value community health and safety make spending decisions based on
+                                    that public safety requires surveillance and punishment, state violence, and
+                                    the confinement of people in prisons. But decades of research have shown this approach has not made our communities
+                                    safer nor healthier. The Carceral Resource Index measures where cities stand:
+                                    do city leaders that purport to value community health and safety make spending decisions based on scientific
                                     evidence, or do they continue to pander to fear-based and racialized "law and order" rhetoric? '''),
                                 width=8),justify='center'),
-                            dbc.Row(dbc.Col(html.P('''Importantly, the lab does not prescribe a particular CRI value cities ought to achieve, except perhaps +1.
+                            dbc.Row(dbc.Col(html.P('''Importantly, the lab does not prescribe a particular CRI value cities ought to achieve.
                                             Even a city with a positive CRI like Washington D.C. (0.53) can still have an $800 million investment in carceral systems which
-                                            cause immense harm. Rather, the CRI measure provides community members and policy makers alike an insight into the relationship
-                                            between city spending on carceral systems versus health and supportive services which prevent the need for carceral approaches
-                                            in the first place.'''), width=8),justify='center'),
+                                            cause immense harm. Rather, the index provides community members and policy makers alike an insight into the relationship
+                                            between city spending on carceral systems versus health and supportive services.'''), width=8),justify='center'),
                             dbc.Row(dbc.Col(html.P(['''You can read more about our CRI research on our ''',html.A(' website.',href='https://www.healthinjustice.org/copy-of-carceral-resource-index',target="_blank")],style={'font-size':'20px'}), width=8),justify='center'),
                         ],className='whyDiv'),
                     html.Div([
                             dbc.Row(dbc.Col(html.H4('What can you do?')),justify='center'),
                             dbc.Row(dbc.Col(html.P('''There are many groups across the United States organizing for investment
-                                                    in the health and wellbeing of their communities and divestment from police,
-                                                    jails, prisons, and related institutions. Below is small sampling of organizations
+                                                    in the health and wellbeing of their communities on one hand, and divestment from police,
+                                                    jails, prisons, and related institutions on the other. Below is small sampling of organizations
                                                     working towards the decriminalization of our communities, the abolition of the Prison Industrial Complex,
                                                     and the empowerment of affected communities and individuals.
-                                                    Many of these organizations offer opportunities for volunteering, monetary donations, and educational opportunities.
+                                                    Many of these organizations offer educational resources and accept monetary donations. There are also similar
+                                                    local groups in towns and cities around the country which rely on volunteer organizing.
                                             '''),width=8),justify='center'),
                             dbc.Row(dbc.Col(html.P([
                                     html.P(html.A("Interrupting Criminalization",href='https://www.interruptingcriminalization.com/',target="_blank")),
