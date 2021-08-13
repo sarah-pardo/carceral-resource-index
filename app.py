@@ -190,9 +190,9 @@ app.layout = html.Div(
                                                 '''),width={'size':4,'offset':0})
                             ],justify='center'),
                     dbc.Row([
-                            dbc.Col(html.Img(src='/assets/CRI0.png',),width={'size':3,'offset':0}),
+                            dbc.Col(html.Img(src='/CRI0.png',),width={'size':3,'offset':0}),
                             dbc.Col(html.P(' '),width={'size':2,'offset':0}),
-                            dbc.Col(html.Img(src='/assets/CRIneg05.png',),width={'size':3,'offset':0}),
+                            dbc.Col(html.Img(src='/CRIneg05.png',),width={'size':3,'offset':0}),
                             ],justify='center'),
                     dbc.Row([
                             dbc.Col(dcc.Graph(figure=guessFig0),width={'size':4,'offset':0}),
@@ -213,9 +213,9 @@ app.layout = html.Div(
                             carceral spending and overestimated health spending by a large margin.'''),width={'size':4,'offset':0})
                             ],justify='center'),
                     dbc.Row([
-                            dbc.Col(html.Img(src='/assets/CRIpos75.png',),width={'size':3,'offset':0}),
+                            dbc.Col(html.Img(src='/CRIpos75.png',),width={'size':3,'offset':0}),
                             dbc.Col(html.P(' '),width={'size':2,'offset':0}),
-                            dbc.Col(html.Img(src='/assets/tulsa_cri_answer.png',),width={'size':3,'offset':0}),
+                            dbc.Col(html.Img(src='/tulsa_cri_answer.png',),width={'size':3,'offset':0}),
                             ],justify='center'),
                     dbc.Row([
                         dbc.Col(dcc.Graph(figure=guessFig75),width={'size':4,'offset':0}),
@@ -224,7 +224,7 @@ app.layout = html.Div(
                         ],justify='center'),
                     dbc.Row(dbc.Col(html.P('''For easier conversion, this number line shows the relationship between CRI and percent values:
                                             ''',style={'font-size':'20px','padding-top':'15px'}),width={'size':8,'offset':0}),justify='center'),
-                    dbc.Row(dbc.Col(html.Img(src='/assets/CRIKey.PNG',width='60%',style={'border-bottom':'none'})),justify='center'),
+                    dbc.Row(dbc.Col(html.Img(src='/CRIKey.PNG',width='60%',style={'border-bottom':'none'})),justify='center'),
 
                 ],className='walkthrough'),
 
