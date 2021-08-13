@@ -139,7 +139,6 @@ app.title = "Carceral Resource Index"
 app.layout = html.Div(
         #children in container
         children=[
-            #html.Div(id='javascript',children=['']),
             #div for the top of the page (intro)
             html.Div([
                 # Row, column for title
@@ -178,50 +177,43 @@ app.layout = html.Div(
                            ),
                     dbc.Row(dbc.Col(html.P('''To understand the Carceral Resource Index tool, let's take a look at Tulsa, Oklahoma.
                                             ''',style={'font-size':'20px','padding-bottom':'25px'}),),justify='center'),
+                    dbc.Row(dbc.Col(html.P(["Tulsa spends ${:,} on carceral systems and health and supportive services combined.".format(tulsaTOTAL)],
+                                    style={'font-size':'18px',}),),justify='center'),
                     dbc.Row([
-                        dbc.Col(html.P("Ex. 1",style={'font-size':'22px'}),width={'size':4,'offset':0}),
-                        dbc.Col(html.P(" "),width={'size':1,'offset':0}),
-                        dbc.Col(html.P("Ex. 2",style={'font-size':'22px'}),width={'size':4,'offset':0}),
+                            html.Div(dbc.Col([
+                                dbc.Row(html.P("Ex. 1",style={'font-size':'22px'}),justify='center'),
+                                dbc.Row(html.P('''A CRI value of 0 would mean Tulsa spends equal amounts (about $66 million each) on carceral
+                                                systems and health and support services:''' ),justify='center'),
+                                dbc.Row(html.Img(src='/CRI0.png',height='200px'),justify='center'),
+                                dbc.Row(dcc.Graph(figure=guessFig0,style={'max-width':'100%','min-width':'100%'}),justify='center',)],
+                                width=12
+                            ),className='example'),
+                            html.Div(dbc.Col([
+                                dbc.Row(html.P("Ex. 2",style={'font-size':'22px'}),justify='center'),
+                                dbc.Row(html.P('''A CRI value of -0.5 would mean Tulsa spends about $100 million (75%)
+                                                 on carceral systems and about $33 million (25%) health and support systems:'''),justify='center'),
+                                dbc.Row(html.Img(src='/CRIneg05.png',height='200px'),justify='center'),
+                                dbc.Row(dcc.Graph(figure=guessFig5,style={'max-width':'100%','min-width':'100%'}),justify='center')],
+                                width=12
+                            ),className='example'),
                         ],justify='center'),
                     dbc.Row([
-                            dbc.Col(html.P(['Tulsa spends ${:,} on carceral systems and health and supportive services combined. A CRI value of 0 would mean Tulsa spends equal amounts (about $66 million each) on carceral systems and health and support services:'.format(tulsaTOTAL) ]
-                                                ),width={'size':4,'offset':0}),
-                            dbc.Col(html.P(' '),width={'size':1,'offset':0}),
-                            dbc.Col(html.P('''A CRI value of -0.5 would mean Tulsa spends about $100 million (75%) on carceral systems and about $33 million (25%) health and support systems:
-                                                '''),width={'size':4,'offset':0})
-                            ],justify='center'),
-                    dbc.Row([
-                            dbc.Col(html.Img(src='/CRI0.png',),width={'size':3,'offset':0}),
-                            dbc.Col(html.P(' '),width={'size':2,'offset':0}),
-                            dbc.Col(html.Img(src='/CRIneg05.png',),width={'size':3,'offset':0}),
-                            ],justify='center'),
-                    dbc.Row([
-                            dbc.Col(dcc.Graph(figure=guessFig0),width={'size':4,'offset':0}),
-                            dbc.Col(html.P(' '),width={'size':1,'offset':0}),
-                            dbc.Col(dcc.Graph(figure=guessFig5),width={'size':4,'offset':0}),
-                            ],justify='center'),
-                    dbc.Row([
-                        dbc.Col(html.P("Ex. 3 (Guess)",style={'font-size':'22px','padding-top':'15px'}),width={'size':4,'offset':0}),
-                        dbc.Col(html.P(" "),width={'size':1,'offset':0}),
-                        dbc.Col(html.P("Ex. 3 (Answer)",style={'font-size':'22px','padding-top':'15px'}),width={'size':4,'offset':0}),
-                        ],justify='center'),
-                    dbc.Row([
-                            dbc.Col(html.P('''Let's say we guess that Tulsa has a CRI value of 0.75, meaning we think the city spends about $116 million or about 88% on Health and Support services
-                                            and about $16 million or 12% on carceral systems.
-                                            '''),width={'size':4,'offset':0}),
-                            dbc.Col(html.P(' '),width={'size':1,'offset':0}),
-                            dbc.Col(html.P('''This estimate would be quite inaccurate, as shown in the chart below. Tulsa actually has a CRI -0.58, which means our guess underestimated
-                            carceral spending and overestimated health spending by a large margin.'''),width={'size':4,'offset':0})
-                            ],justify='center'),
-                    dbc.Row([
-                            dbc.Col(html.Img(src='/CRIpos75.png',),width={'size':3,'offset':0}),
-                            dbc.Col(html.P(' '),width={'size':2,'offset':0}),
-                            dbc.Col(html.Img(src='/tulsa_cri_answer.png',),width={'size':3,'offset':0}),
-                            ],justify='center'),
-                    dbc.Row([
-                        dbc.Col(dcc.Graph(figure=guessFig75),width={'size':4,'offset':0}),
-                        dbc.Col(html.P(' '),width={'size':1,'offset':0}),
-                        dbc.Col(dcc.Graph(figure=answerFig58),width={'size':4,'offset':0}),
+                            html.Div(dbc.Col([
+                                dbc.Row(html.P("Ex. 3 (Guess)",style={'font-size':'22px'}),justify='center'),
+                                dbc.Row(html.P('''Let's say we guess that Tulsa has a CRI value of 0.75, meaning we think the city spends about $116 million or about 88% on Health and Support services
+                                                and about $16 million or 12% on carceral systems.''' ),justify='center'),
+                                dbc.Row(html.Img(src='/CRIpos75.png',height='200px'),justify='center'),
+                                dbc.Row(dcc.Graph(figure=guessFig75,style={'max-width':'100%','min-width':'100%'}),justify='center',)],
+                                width=12
+                            ),className='example'),
+                            html.Div(dbc.Col([
+                                dbc.Row(html.P("Ex. 3 (Answer)",style={'font-size':'22px'}),justify='center'),
+                                dbc.Row(html.P('''This estimate would be quite inaccurate, as shown in the chart below. Tulsa actually has a CRI -0.58, which means our guess underestimated
+                                carceral spending and overestimated health spending by a large margin.'''),justify='center'),
+                                dbc.Row(html.Img(src='/tulsa_cri_answer.png',height='200px'),justify='center'),
+                                dbc.Row(dcc.Graph(figure=answerFig58,style={'max-width':'100%','min-width':'100%'}),justify='center')],
+                                width=12
+                            ),className='example'),
                         ],justify='center'),
                     dbc.Row(dbc.Col(html.P('''For easier conversion, this number line shows the relationship between CRI and percent values:
                                             ''',style={'font-size':'20px','padding-top':'15px'}),width={'size':8,'offset':0}),justify='center'),
@@ -291,9 +283,9 @@ app.layout = html.Div(
                                           width=8),justify='center')
                         ],className='app-estimate-answer'),
                     html.Div(id='post-guess',children=[
+                        html.Div(id='javascript'),
                         dbc.Row([
-                            dbc.Col(html.A(dbc.Button('Try another city', style={'width':'150px'},id='try-another-button'),href='/'),width={'size':1,'offset':0},style={'margin-bottom':'75px'}),
-                            #dbc.Col(dbc.Button('Show City Spending Breakdown',id='show-more-button',target='#more-info-container',size='lg'),width=3)
+                            dbc.Col(html.A(dbc.Button('Try another city', style={'width':'150px'},id='try-another-button'),href="/"),width={'size':1,'offset':0},style={'margin-bottom':'75px'}),
                             ],justify="center"
                             )],
                         style={'display':'none'},className='tryagainbutton'),
@@ -411,6 +403,7 @@ app.layout = html.Div(
                                             cause immense harm. Rather, the index provides community members and policy makers alike an insight into the relationship
                                             between city spending on carceral systems versus health and supportive services.'''), width=8),justify='center'),
                             dbc.Row(dbc.Col(html.P(['''You can read more about our CRI research on our ''',html.A(' website.',href='https://www.healthinjustice.org/copy-of-carceral-resource-index',target="_blank")],style={'font-size':'20px'}), width=8),justify='center'),
+                            dbc.Row(dbc.Col(html.A(dbc.Button("Learn More"),href='https://www.healthinjustice.org/copy-of-carceral-resource-index',target="_blank")))
                         ],className='whyDiv'),
                     html.Div([
                             dbc.Row(dbc.Col(html.H4('What can you do?')),justify='center'),
@@ -574,23 +567,10 @@ def show_results(guessVal,n_clicks,City,city_df2020_data,total,cri,guess_dict):
                 {'display':'none'},#'guesser-description','style'
                 )
 
-# app.clientside_callback(
-#     """
-#     function(tryanother) {
-#         if (n_clicks != None){
-#             window.scrollTo(0, 800);
-#         }
-#     }
-#     """,
-#     Output("javascript", "children"),
-#     Input('try-another-button', 'n_clicks'),
-# )
-
 @app.callback(
     Output('explore-spending', 'figure'),
     Output('more-info-container','style'),
-    [#Input('show-more-button', 'n_clicks'),
-    Input('submit-button', 'n_clicks'),
+    [Input('submit-button', 'n_clicks'),
     Input("city-dropdown", "value"),
     Input('city-df-store','data'),
     Input("field", "value")]
@@ -785,6 +765,23 @@ def city_comparisons(n_clicks,City,compareby):
             compareFig.update_layout(xaxis={'categoryorder':'total descending'},uniformtext_minsize=8, uniformtext_mode='hide')
 
         return compareFig
+
+# app.clientside_callback(
+#     """
+#     function(n_clicks) {
+#         if n_clicks == None{
+#             raise PreventUpdate;
+#         }
+#         else{
+#             window.scrollTo(0, document.body.scrollHeight);
+#         }
+#
+#     }
+#     """,
+#     Output("javascript", "children"),
+#     Input('try-another-button', 'n_clicks'),
+# )
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

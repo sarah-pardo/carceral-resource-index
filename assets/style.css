@@ -22,7 +22,7 @@ body{
     background-image: linear-gradient(#E0E0E0,#FFFFFF);
 }
 .walkthrough{
-    background-image: linear-gradient(#E8E8E8,#FFFFFF);
+    background-image: linear-gradient(#E0E0E0,#FFFFFF);
 }
 .guesserDiv{
     background-image: linear-gradient(#E0E0E0,#FFFFFF);
@@ -35,6 +35,13 @@ body{
 }
 .whatDiv{
     background-image: linear-gradient(#C8C8C8,#E8E8E8);
+}
+
+.example{
+  background-color:white;
+  width:40%;
+  padding:25px;
+  margin: 40px;
 }
 
 
