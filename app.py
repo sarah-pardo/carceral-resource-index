@@ -189,7 +189,7 @@ app.layout = html.Div(
                                                 systems and health and support services:''' ),justify='center'),
                                 dbc.Row(html.Img(src='/CRI0.png',height='200px'),justify='center'),
                                 dbc.Row(dcc.Graph(figure=guessFig0,style={'max-width':'100%','min-width':'100%'}),justify='center',)],
-                                width=12
+                                width=12,xs=12,sm=12
                             ),className='example'),
                             html.Div(dbc.Col([
                                 dbc.Row(html.P("Ex. 2",style={'font-size':'22px'}),justify='center'),
@@ -197,7 +197,7 @@ app.layout = html.Div(
                                                  on carceral systems and about $33 million (25%) health and support systems:'''),justify='center'),
                                 dbc.Row(html.Img(src='/CRIneg05.png',height='200px'),justify='center'),
                                 dbc.Row(dcc.Graph(figure=guessFig5,style={'max-width':'100%','min-width':'100%'}),justify='center')],
-                                width=12
+                                width=12,xs=12,sm=12
                             ),className='example'),
                         ],justify='center'),
                     dbc.Row([
@@ -207,7 +207,7 @@ app.layout = html.Div(
                                                 and about $16 million or 12% on carceral systems.''' ),justify='center'),
                                 dbc.Row(html.Img(src='/CRIpos75.png',height='200px'),justify='center'),
                                 dbc.Row(dcc.Graph(figure=guessFig75,style={'max-width':'100%','min-width':'100%'}),justify='center',)],
-                                width=12
+                                width=12,xs=12,sm=12
                             ),className='example'),
                             html.Div(dbc.Col([
                                 dbc.Row(html.P("Ex. 3 (Answer)",style={'font-size':'22px'}),justify='center'),
@@ -215,7 +215,7 @@ app.layout = html.Div(
                                 carceral spending and overestimated health spending by a large margin.'''),justify='center'),
                                 dbc.Row(html.Img(src='/tulsa_cri_answer.png',height='200px'),justify='center'),
                                 dbc.Row(dcc.Graph(figure=answerFig58,style={'max-width':'100%','min-width':'100%'}),justify='center')],
-                                width=12
+                                width=12,xs=12,sm=12
                             ),className='example'),
                         ],justify='center'),
                     dbc.Row(dbc.Col(html.P('''For easier conversion, this number line shows the relationship between CRI and percent values:
@@ -236,7 +236,7 @@ app.layout = html.Div(
                                         value='Boston', options=[
                                             {'label': c, 'value': c}
                                             for c in city_list
-                                            ]),width=3),
+                                            ]),width=3,xs=12,sm=12),
                                 ],justify="center"
                            ),
                     # Store info
@@ -275,15 +275,15 @@ app.layout = html.Div(
                                  Arts and Culture, Civic and Community Engagement, Employment, Housing ''',
                                 target="tooltip-health-target",#style={"background-color": "#99ccff"}
                             ),
-                        ],width={'size':8}),justify="center")),
+                        ],width={'size':8},xs=12,sm=12),justify="center")),
                     #dbc.Row(dbc.Col(html.P('''If Imaginary City had a CRI of 0.25, that would mean it spends $375,000 on carceral systems and $625,000 on health and support systems.'''),width={'size':8}),justify="center"),
                     html.Div([
                         dbc.Row(dbc.Col(html.Div(id='slider-drag-output', style={'margin-bottom':'20px'}),
-                                         width=8),justify='center'),
+                                         width=8,xs=12,sm=12),justify='center'),
                         dbc.Row(dbc.Col(html.Div(id='real-output', style={'display':'none'}),
-                                         width=8),justify='center'),
+                                         width=8,xs=12,sm=12),justify='center'),
                         dbc.Row(dbc.Col(html.Div(id='answer-percent-output'),
-                                          width=8),justify='center')
+                                          width=8,xs=12,sm=12),justify='center')
                         ],className='app-estimate-answer'),
                     html.Div(id='post-guess',children=[
                         dbc.Row([
@@ -310,7 +310,7 @@ app.layout = html.Div(
                                         1: '1',
                                     }
                                   ), id='slider-container',
-                            ),width={'size':6,'offset':0}),
+                            ),width={'size':6,'offset':0},xs=12,sm=12),
                         #dbc.Col(html.P('1')),
                     ],justify='center'),
                     dbc.Row([
@@ -328,7 +328,7 @@ app.layout = html.Div(
                                   id='range-slider-container',
                                   style={"display":'none'}
                             )
-                            ,width={'size':6,'offset':0}),
+                            ,width={'size':6,'offset':0},xs=12,sm=12),
                         #dbc.Col(html.P('1')),
                     ],justify='center'),
                     # dbc.Row([
@@ -344,10 +344,10 @@ app.layout = html.Div(
                             dcc.Store(id='guess-dict-store'),
                             dcc.Graph(id='guess-spending',style={"display": "inline-block","width": "100%"}),
                                 ]
-                            )],width={'size':6,'offset':0}),justify='center'),
+                            )],width={'size':6,'offset':0},xs=12,sm=12),justify='center'),
                     dbc.Row(dbc.Col(
                         html.Div(id='results-graph-container',children=[dcc.Graph(id='results')],
-                                 style={'display':'none'}),width={'size':6,'offset':0}),justify='center'
+                                 style={'display':'none'}),width={'size':6,'offset':0},xs=12,sm=12),justify='center'
                            ),
                     dbc.Row(dbc.Col(html.P("But which departments actually contribute to the CRI value?",id='breakdown-lead-in',style={'display':'none'})))
 
@@ -364,7 +364,7 @@ app.layout = html.Div(
                                 Click on the departments listed under the "Spending Type" key
                                 to make them temporarily disappear. Double click to view only that department.'''),width=8),justify='center'),
                             dbc.Row([
-                                dbc.Col(dcc.Graph(id='explore-spending'),width=6),
+                                dbc.Col(dcc.Graph(id='explore-spending'),width=6,xs=12,sm=12),
                                 dbc.Col(dbc.RadioItems(
                                     id='field',
                                     options=[{'label': i, 'value': i}
@@ -377,16 +377,16 @@ app.layout = html.Div(
                             dbc.Row(dbc.Col(html.Div(html.H4("Let's see how your city compares across categories"),className='app-header-title'),width=8),justify='center'),
                             dbc.Row(dbc.Col(html.P('''The Carceral Resource Index is useful for comparing cities to each other because it quantifies
                                 relative spending, which is easier to compare than raw dollar amounts. Toggle the buttons to compare
-                                your city to others based on the different categories.'''),width=8),justify='center'),
+                                your city to others based on the different categories.'''),width=8,xs=12,sm=12),justify='center'),
                             dbc.Row([
-                                dbc.Col(dcc.Graph(id='compareFig'),width=6,),
+                                dbc.Col(dcc.Graph(id='compareFig'),width=6,xs=12,sm=12),
                                 dbc.Col(
                                     dbc.RadioItems(
                                     id='compareby',
                                     options=[{'label': i, 'value': i} for i in ['Similar CRI Values','Similar Budget Size','Cities in the Same Region','Similar Police Budget Size']],
                                     value='Similar CRI Values',
                                     labelStyle={'display': 'inline-block'}
-                                ),width=3,style={'text-align':'left'}),
+                                ),width=3,xs=12,sm=12,style={'text-align':'left'}),
                                 ],align='center',justify='center')],className='compareexplore'),
                         ]),
                     html.Div([
@@ -399,7 +399,7 @@ app.layout = html.Div(
                                     safer nor healthier. The Carceral Resource Index measures where cities stand:
                                     do city leaders that purport to value community health and safety make spending decisions based on scientific
                                     evidence, or do they continue to pander to fear-based and racialized "law and order" rhetoric? '''),
-                                width=8),justify='center'),
+                                width=8,xs=12,sm=12),justify='center'),
                             dbc.Row(dbc.Col(html.P('''Importantly, the lab does not prescribe a particular CRI value cities ought to achieve.
                                             Even a city with a positive CRI like Washington D.C. (0.53) can still have an $800 million investment in carceral systems which
                                             cause immense harm. Rather, the index provides community members and policy makers alike an insight into the relationship
@@ -416,7 +416,7 @@ app.layout = html.Div(
                                                     and the empowerment of affected communities and individuals.
                                                     Many of these organizations offer educational resources and accept monetary donations. There are also similar
                                                     local groups in towns and cities around the country which rely on volunteer organizing.
-                                            '''),width=8),justify='center'),
+                                            '''),width=8,xs=12,sm=12),justify='center'),
                             dbc.Row(dbc.Col(html.P([
                                     html.P(html.A("Interrupting Criminalization",href='https://www.interruptingcriminalization.com/',target="_blank")),
                                     html.P(html.A("The National Council for Incarcerated and Formerly Incarcerated Women and Girls",href='https://www.nationalcouncil.us/',target="_blank")),
