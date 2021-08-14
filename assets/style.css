@@ -41,7 +41,8 @@ body{
 
 .example{
   background-color:white;
-  width:40%;
+  width: auto;
+
   padding:25px;
   margin: 40px;
 }
