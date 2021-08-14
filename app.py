@@ -131,7 +131,9 @@ answerFig58.update_traces(texttemplate='%{text:.2s}')
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 #"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous"]
 #'https://codepen.io/chriddyp/pen/bWLwgP.css',"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-app = dash.Dash(__name__,external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__,external_stylesheets=external_stylesheets,meta_tags=[
+        {"name": "viewport", "content": "width=device-width, initial-scale=1"}
+    ],)
 server = app.server
 server.wsgi_app = WhiteNoise(server.wsgi_app, root='static/')
             # Container for all layout
