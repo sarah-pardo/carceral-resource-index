@@ -146,7 +146,7 @@ app.layout = html.Div(
                         # Div for title
                         html.Div(html.H3("How well do you know your city's spending priorities?"),
                             className='app-header-title'),
-                        width={'size':8}),justify='center'
+                        width={'size':8},xs=12,sm=12),justify='center'
                        ),
                 # row, column for intro par
                 dbc.Row(dbc.Col(
@@ -165,10 +165,11 @@ app.layout = html.Div(
                             html.Span(''' The index may be used to benchmark one city's relative spending against
                                 another's. Below we explain how to read the index and ask you to guess your own city's CRI value.
                                 ''')
-                                 ]),width=8),
+                                 ]),width=8,xs=12,sm=12),
                         justify='center'
                        ),],className='introDiv'),
                 html.Div([
+                    dbc.Row(dbc.Col(html.A(dbc.Button("Skip Walkthrough"),href='#select-container'))),
                     dbc.Row(dbc.Col(
                             # Div for title
                             html.Div(html.H3("Carceral Resource Index Walkthrough"),
@@ -283,7 +284,6 @@ app.layout = html.Div(
                                           width=8),justify='center')
                         ],className='app-estimate-answer'),
                     html.Div(id='post-guess',children=[
-                        html.Div(id='javascript'),
                         dbc.Row([
                             dbc.Col(html.A(dbc.Button('Try another city', style={'width':'150px'},id='try-another-button'),href="/"),width={'size':1,'offset':0},style={'margin-bottom':'75px'}),
                             ],justify="center"
@@ -308,7 +308,7 @@ app.layout = html.Div(
                                         1: '1',
                                     }
                                   ), id='slider-container',
-                            ),width={'size':8,'offset':0}),
+                            ),width={'size':6,'offset':0}),
                         #dbc.Col(html.P('1')),
                     ],justify='center'),
                     dbc.Row([
@@ -769,16 +769,13 @@ def city_comparisons(n_clicks,City,compareby):
 # app.clientside_callback(
 #     """
 #     function(n_clicks) {
-#         if n_clicks == None{
-#             raise PreventUpdate;
-#         }
-#         else{
-#             window.scrollTo(0, document.body.scrollHeight);
-#         }
-#
+#         if n_clicks > 0 {
+#             alert("It Works");
+#             }
+#         return 'display':;
 #     }
 #     """,
-#     Output("javascript", "children"),
+#     Output("try-another-button","style"),
 #     Input('try-another-button', 'n_clicks'),
 # )
 

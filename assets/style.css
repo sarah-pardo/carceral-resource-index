@@ -1,5 +1,7 @@
 
-
+html {
+  scroll-behavior: smooth;
+}
 body{
     font-family: Avenir, sans-serif;
     padding-top: 50px;
