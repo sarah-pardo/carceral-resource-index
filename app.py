@@ -690,7 +690,7 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                         x="Year",
                         y="Dollar Amount",
                         color="Spending Type",
-                        symbol="Spending Type",
+                        markers=True,
                         hover_data={'Dollar Amount': ':.5s','Category': True},
                         )
         byYear.update_layout(font=dict(
