@@ -475,7 +475,13 @@ app.layout = html.Div(
                         ],className='whatDiv'),
                 ]),
             html.Footer([
-                        "Site designed and developed by ",html.A("Sarah Pardo",href="https://www.sarahpardo.com",target="_blank",style={'color':'darkblue'})," on ",html.A("Plotly Dash",href="https://dash.plotly.com/introduction",target="_blank",style={'color':'darkblue'})])
+                        "Site designed and developed by ",
+                        html.A("Sarah Pardo",href="https://www.sarahpardo.com",target="_blank",style={'color':'darkblue'}),
+                        " on ",
+                        html.A("Plotly Dash",href="https://dash.plotly.com/introduction",target="_blank",style={'color':'darkblue'}),
+                        " for ",
+                        html.A("The Health in Justice Action Lab",href="https://www.healthinjustice.org/",target="_blank",style={'color':'darkred'}
+                        ])
             ])
 
 
