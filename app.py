@@ -480,7 +480,7 @@ app.layout = html.Div(
                         " on ",
                         html.A("Plotly Dash",href="https://dash.plotly.com/introduction",target="_blank",style={'color':'darkblue'}),
                         " for ",
-                        html.A("The Health in Justice Action Lab",href="https://www.healthinjustice.org/",target="_blank",style={'color':'darkred'}
+                        html.A("The Health in Justice Action Lab",href="https://www.healthinjustice.org/",target="_blank",style={'color':'darkred'})
                         ])
             ])
 
