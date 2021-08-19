@@ -5,13 +5,19 @@ html {
 body{
     font-family: Avenir, sans-serif;
     padding-top: 50px;
-
-    /*background-image: linear-gradient(#FFFFFF, #bdc1c3 );*/
-    background-color: #E0E0E0;
+    background-image: linear-gradient(to right,#C1E6FD, #C6F6C6);
     text-align: center;
     font-size: 18px;
     font-size-adjust: auto;
 
+}
+h5, .h5{
+  padding-top: 15px;
+}
+footer{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: white;
 }
 .guesserDiv, .introDiv, .walkthrough, .compareexplore, .whyDiv, .whatDiv {
   width: 100%;
@@ -19,25 +25,28 @@ body{
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
-.introDiv{
-    background-image: linear-gradient(#E0E0E0,#FFFFFF);
+.button.btn, .btn-secondary{
+  background-color: darkblue;
+  border-radius: 12px;
+  border-color: darkblue;
+}
+.button.btn, .btn-secondary:hover{
+  background-color: lightgreen;
+  color:black;
 }
 .walkthrough{
-    background-image: linear-gradient(#E0E0E0,#FFFFFF);
+    background-image: linear-gradient(to right,#e0f4ff, #e8ffe8);
 }
 .guesserDiv{
-    background-image: linear-gradient(#E0E0E0,#FFFFFF);
+    background-color:#FFFFFF;
 }
 .compareexplore{
-    background-image: linear-gradient(#E8E8E8,#FFFFFF);
+    background-color:#FFFFFF;
 }
 .whyDiv{
-    background-image: linear-gradient(#D3D3D3,#E8E8E8);
+  background-image: linear-gradient(to right,#e0f4ff, #e8ffe8);
 }
-.whatDiv{
-    background-image: linear-gradient(#C8C8C8,#E8E8E8);
-}
+
 
 .example{
   background-color:white;
@@ -94,7 +103,13 @@ img{
     text-align:center;
 }
 
-.app-estimate-answer{
+.estimate{
+    padding-left:25px;
+    padding-bottom:25px;
+    text-align:center;
+}
+
+.answer{
     padding-left:25px;
     padding-bottom:25px;
     text-align:center;
