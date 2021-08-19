@@ -813,7 +813,7 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                                 x=1,
                                                 y=-0.6),
                                 )
-        return byCategory, byYear, deptFig, carcFig, healthFig, {"display":"inline"}
+        return byCategory, byYear, deptFig, carcFig, healthFig, {"display":"block"}
 # Comparison charts
 @app.callback(Output('CRIFig', 'children'),
               Output('budgetFig', 'children'),
