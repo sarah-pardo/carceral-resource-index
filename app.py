@@ -180,9 +180,9 @@ app.layout = html.Div(
                             ),justify='center'
                            ),
                     dbc.Row(dbc.Col(html.P('''To understand how to use the Carceral Resource Index tool below, let's first take a look at Tulsa, Oklahoma.
-                                            ''',style={'font-size':'20px','padding-bottom':'25px'}),),justify='center'),
+                                            ''',style={'font-size':'20px','padding-bottom':'25px'}),xs=11,sm=11,lg=8),justify='center'),
                     dbc.Row(dbc.Col(html.P(["Tulsa spends ",html.Span("${:,}".format(tulsaTOTAL),style={"font-weight": "bold"})," on carceral systems and health and supportive services combined."],
-                                    style={'font-size':'20px'}),),justify='center'),
+                                    style={'font-size':'20px'}),xs=11,sm=11,lg=8),justify='center'),
                     dbc.Row([
                             dbc.Col([
                                 dbc.Row(html.P("Example Guess",style={'font-size':'22px'}),justify='center'),
@@ -255,9 +255,9 @@ app.layout = html.Div(
                                  Arts and Culture, Civic and Community Engagement, Employment, Housing ''',
                                 target="tooltip-health-target",
                             ),
-                        ],xs=12,sm=12,lg=8),justify="center")),
+                        ],xs=11,sm=11,lg=8),justify="center")),
                         html.Div([
-                            dbc.Row(dbc.Col(html.P("Drag the light blue slider along the bar below. Then press the 'Guess' button below."))),
+                            dbc.Row(dbc.Col(html.P("Drag the light blue slider along the bar below. Then press the 'Guess' button below."),xs=11,sm=11,lg=8),justify='center'),
                             dbc.Row(dbc.Col(html.Div(id='slider-drag-output', style={'margin-bottom':'40px'}),
                                              lg=8,xs=10,sm=10),justify='center'),
                             dbc.Row(dbc.Col(html.Div(id='answer-percent-output'),
@@ -340,7 +340,7 @@ app.layout = html.Div(
                                     ),
                                 lg=10,xs=10,sm=10,),justify='center'),
                             dbc.Row(dbc.Col(html.Div(html.H3("Let's see how your city compares across categories"),
-                                            className='app-header-title'),lg=8,xs=12,sm=12),justify='center'),
+                                            className='app-header-title'),lg=8,xs=11,sm=11),justify='center'),
                             dbc.Row(dbc.Col(html.P('''The Carceral Resource Index is useful for comparing cities to each other because it quantifies
                                 relative spending, which is easier to compare than raw dollar amounts. Click through the tabs to compare
                                 your city to others based on the different categories.''',
@@ -407,14 +407,14 @@ app.layout = html.Div(
                             ],style={'font-size':'20px'}),xs=11,sm=11,lg=10),justify='center')
                         ],className='whatDiv'),
                 ]),
-            html.Footer([
+            html.Footer(dbc.Row(dbc.Col([
                         "Site designed and developed by ",
                         html.A("Sarah Pardo",href="https://www.sarahpardo.com",target="_blank",style={'color':'darkblue'}),
                         " on ",
                         html.A("Plotly Dash",href="https://dash.plotly.com/introduction",target="_blank",style={'color':'darkblue'}),
                         " for ",
                         html.A("The Health in Justice Action Lab",href="https://www.healthinjustice.org/",target="_blank",style={'color':'darkred'})
-                        ])
+                        ],xs=11,sm=11,lg=12),justify='center'))
             ])
 
 
