@@ -13,22 +13,26 @@ from whitenoise import WhiteNoise
 
 # 'https://git.heroku.com/carceral-resource-index.git'
 # Load Data
-#city_spending includes: City,CRI,State,Year,FY Year,Spending Type,Dollar Amount,Category, Total Spending
-city_spending = pd.read_csv('city_spending_all_years.csv').drop(['Unnamed: 0'],axis=1)
+#city_spending includes: City,CRI,State,Year,FY Year,Spending Type,
+#   Dollar Amount,Category, Total Spending
+city_spending = pd.read_csv('city_spending_all_years.csv').drop(['Unnamed: 0'],
+                axis=1)
 # need to make new csv file with 'Year' already as type string
 city_spending['Year'] = city_spending['Year'].astype(str)
-
+# list of cities in the dataframe
 city_list = ["Albuquerque", "Arlington", "Atlanta", "Austin", "Bakersfield",
              "Baltimore", "Boston", "Charlotte", "Chicago", "Colorado Springs",
              "Columbus", "Dallas", "Denver", "Detroit", "El Paso", "Fort Worth",
              "Fresno", "Houston", "Indianapolis", "Jacksonville", "Kansas City",
              "Las Vegas", "Long Beach", "Los Angeles", "Louisville", "Memphis",
-             "Mesa", "Miami", "Milwaukee", "Minneapolis", "Nashville", "Nassau-Suffolk",
-             "New Orleans", "New York", "Newark", "Oakland", "Oklahoma City", "Omaha",
-             "Philadelphia", "Phoenix", "Portland", "Raleigh", "Sacramento",
-             "San Antonio", "San Diego", "San Francisco", "San Jose", "Seattle",
-             "Tucson", "Tulsa", "Virginia Beach", "Washington, D.C.", "Wichita"]
-region_dct = {'Mesa': 'Southwest', 'Phoenix': 'Southwest', 'Tucson': 'Southwest', 'Bakersfield': 'Pacific',
+             "Mesa", "Miami", "Milwaukee", "Minneapolis", "Nashville",
+             "Nassau-Suffolk","New Orleans", "New York", "Newark", "Oakland",
+             "Oklahoma City", "Omaha","Philadelphia", "Phoenix", "Portland",
+             "Raleigh", "Sacramento","San Antonio", "San Diego",
+             "San Francisco", "San Jose", "Seattle","Tucson", "Tulsa",
+             "Virginia Beach", "Washington, D.C.", "Wichita"]
+# Cities and what region they belong to
+region_dct = {'Mesa': 'Southwest', 'Phoenix': 'Southwest','Tucson': 'Southwest', 'Bakersfield': 'Pacific',
               'Fresno': 'Pacific', 'Long Beach': 'Pacific', 'Los Angeles': 'Pacific', 'Oakland': 'Pacific',
               'Sacramento': 'Pacific', 'San Diego': 'Pacific', 'San Francisco': 'Pacific',
               'San Jose': 'Pacific', 'Colorado Springs': 'Rocky Mountains', 'Denver': 'Rocky Mountains',
@@ -45,86 +49,22 @@ region_dct = {'Mesa': 'Southwest', 'Phoenix': 'Southwest', 'Tucson': 'Southwest'
               'El Paso': 'Southwest', 'Fort Worth': 'Southwest', 'Houston': 'Southwest',
               'San Antonio': 'Southwest', 'Virginia Beach': 'Southeast', 'Seattle': 'Pacific',
               'Milwaukee': 'Midwest', 'Washington, D.C.': 'Midatlantic'}
+# Pull key info from individual cities using pandas groupby
 city_groupby = city_spending.groupby(['City'])
 region_groupby = city_spending.groupby(['Region'])
-
+# Only police spending information for 2020
 police_spending = city_spending[(city_spending['Spending Type'] == 'Police') & (city_spending['Year'] =='2020')]
 police_spending=police_spending.sort_values('Dollar Amount').reset_index().drop(['index'],axis=1)
+# sort cities by 2020 CRI ('last' is used because 2020 is the last year for every city)
 similar_cri = city_groupby.last().sort_values('CRI').reset_index()
 
-# TULSA
+# TULSA - used as an exmaple city for the explanation of the CRI tool
 tulsa_df = city_groupby.get_group('Tulsa')
 tulsa_df2020 = tulsa_df[tulsa_df['Year']=='2020'].reset_index()
 tulsaTOTAL = tulsa_df2020.at[0,'Total Spending']
 tulsaCRI2020 = tulsa_df2020.at[0,'CRI']
 
-#Dollar amounts for Tulsa if CRI is 0
-C0 = (tulsaTOTAL*(0-1))/-2
-H0 = tulsaTOTAL - C0
-tulsa_cri_0 = {'Category':['Carceral','Health and Support'],
-              'Key':['Your Guess','Your Guess'],
-            'Dollar Amount':[C0,H0]}
-
-guessFig0 = px.bar(tulsa_cri_0,
-                 x='Category',
-                 y='Dollar Amount',
-                 color='Category',
-                 color_discrete_sequence=["darkblue","lightgreen"],
-                 text='Dollar Amount',
-                 title='Spending for Tulsa with CRI = 0') #, Your Estimate
-guessFig0.update_traces(texttemplate='%{text:.5s}')
-guessFig0.update_layout(legend=dict(
-                            title="",
-                            orientation="h",
-                            yanchor="bottom",
-                            xanchor="right",
-                            x=1,
-                            y=1),
-                        font=dict(
-                            family='Avenir'
-                            ),
-                        title=dict(
-                                x=0.5,
-                                y=0.95),
-                        hoverlabel=dict(
-                            bgcolor="white",
-                            ),
-                    )
-
-#Dollar amounts for Tulsa if CRI is -0.5
-C5 = (tulsaTOTAL*(-0.5-1))/-2
-H5 = tulsaTOTAL - C5
-tulsa_cri_5 = {'Category':['Carceral','Health and Support'],
-              'Key':['Your Guess','Your Guess'],
-            'Dollar Amount':[C5,H5]}
-
-guessFig5 = px.bar(tulsa_cri_5,
-                 x='Category',
-                 y='Dollar Amount',
-                 color='Category',
-                 color_discrete_sequence=["darkblue","lightgreen"],
-                 text='Dollar Amount',
-                 title='Spending for Tulsa with CRI = -0.5') #, Your Estimate
-guessFig5.update_traces(texttemplate='%{text:.5s}')
-guessFig5.update_layout(legend=dict(
-                            title="",
-                            orientation="h",
-                            yanchor="bottom",
-                            xanchor="right",
-                            x=1,
-                            y=1),
-                        font=dict(
-                            family='Avenir'
-                            ),
-                        title=dict(
-                                x=0.5,
-                                y=0.95),
-                        hoverlabel=dict(
-                            bgcolor="white",
-                            ),
-                    )
-
-#Dollar amounts for Tulsa if CRI is +0.75
+#Dollar amounts for Tulsa if CRI is +0.75. This is used in the guess example.
 C75 = (tulsaTOTAL*(0.75-1))/-2
 H75 = tulsaTOTAL - C75
 tulsa_cri_75 = {'Category':['Carceral','Health and Support'],
@@ -195,30 +135,24 @@ answerFig58.update_layout(legend=dict(
                             ),
                     )
 
-# Build App
 external_stylesheets = [dbc.themes.BOOTSTRAP]
-#"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", crossorigin="anonymous"]
-#'https://codepen.io/chriddyp/pen/bWLwgP.css',"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 app = dash.Dash(__name__,external_stylesheets=external_stylesheets,meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1"}
     ],)
 server = app.server
+# WhiteNoise allows me to host static images on Heroku!
 server.wsgi_app = WhiteNoise(server.wsgi_app, root='static/')
             # Container for all layout
 app.title = "Carceral Resource Index"
+# Design the HTML
 app.layout = html.Div(
-        #children in container
         children=[
-            #div for the top of the page (intro)
             html.Div([
-                # Row, column for title
                 dbc.Row(dbc.Col(
-                        # Div for title
                         html.Div(html.H3("How well do you know your city's spending priorities?"),
                             className='app-header-title'),
                         xs=12,sm=12,lg=8),justify='center'
                        ),
-                # row, column for intro par
                 dbc.Row(dbc.Col(
                         html.P([
                             html.Span('''We are in the midst of a nationwide debate rethinking how to achieve public safety
@@ -241,33 +175,14 @@ app.layout = html.Div(
                 html.Div([
                     dbc.Row(dbc.Col(html.A(dbc.Button("Skip Walkthrough",size='md'),href='#guess'))),
                     dbc.Row(dbc.Col(
-                            # Div for title
                             html.Div(html.H3("Carceral Resource Index Walkthrough"),
                                 className='app-header-title'),
                             ),justify='center'
                            ),
-                    dbc.Row(dbc.Col(html.P('''To understand the Carceral Resource Index tool, let's take a look at Tulsa, Oklahoma.
+                    dbc.Row(dbc.Col(html.P('''To understand how to use the Carceral Resource Index tool below, let's first take a look at Tulsa, Oklahoma.
                                             ''',style={'font-size':'20px','padding-bottom':'25px'}),),justify='center'),
-                    dbc.Row(dbc.Col(html.P(["Tulsa spends ${:,} on carceral systems and health and supportive services combined.".format(tulsaTOTAL)],
-                                    style={'font-size':'18px',}),),justify='center'),
-                    # dbc.Row([
-                    #         dbc.Col([
-                    #             dbc.Row(html.P("Ex. 1",style={'font-size':'22px'}),justify='center'),
-                    #             dbc.Row(html.P('''A CRI value of 0 would mean Tulsa spends equal amounts (about $66 million each) on carceral
-                    #                             systems and health and support services:''',style={'max-width':'90%','min-width':'90%'} ),justify='center'),
-                    #             dbc.Row(html.Img(src='/CRI0.png',height='200px'),justify='center'),
-                    #             dbc.Row(dcc.Graph(figure=guessFig0,style={'max-width':'95%','min-width':'95%'}),justify='center',)],
-                    #             xs=11,sm=11,lg=5,style={'background-color':'white','padding':'10px','margin':'20px'}
-                    #         ),
-                    #         dbc.Col([
-                    #             dbc.Row(html.P("Ex. 2",style={'font-size':'22px'}),justify='center'),
-                    #             dbc.Row(html.P('''A CRI value of -0.5 would mean Tulsa spends about $100 million (75%)
-                    #                              on carceral systems and about $33 million (25%) health and support systems:''',style={'max-width':'90%','min-width':'90%'}),justify='center'),
-                    #             dbc.Row(html.Img(src='/CRIneg05.png',height='200px'),justify='center'),
-                    #             dbc.Row(dcc.Graph(figure=guessFig5,style={'max-width':'95%','min-width':'95%'}),justify='center')],
-                    #             xs=11,sm=11,lg=5,style={'background-color':'white','padding':'10px','margin':'20px'}
-                    #         ),
-                    #     ],justify='center'),
+                    dbc.Row(dbc.Col(html.P(["Tulsa spends ",html.Span("${:,}".format(tulsaTOTAL),style={"font-weight": "bold"})," on carceral systems and health and supportive services combined."],
+                                    style={'font-size':'20px'}),),justify='center'),
                     dbc.Row([
                             dbc.Col([
                                 dbc.Row(html.P("Example Guess",style={'font-size':'22px'}),justify='center'),
@@ -291,7 +206,6 @@ app.layout = html.Div(
                     dbc.Row(dbc.Col(html.Img(src='/CRIKey.png',style={'border-bottom':'none','overflow':'scroll'}),xs=11,sm=11,lg=8),justify='center'),
 
                 ],className='walkthrough'),
-                # guess div
                 html.Div(children=[
                     dbc.Row(dbc.Col(html.P('''Now that you understand how the CRI index relates to spending, pick from the 50 most populous
                                             cities in the United States and estimate its CRI value. We'll tell you how close you were and show you more data to explore.
@@ -314,7 +228,7 @@ app.layout = html.Div(
                     dcc.Store('city-df2020-store'),
                     dcc.Store('total-store'),
                     dcc.Store('cri-store'),
-                    html.Div(dbc.Row(dbc.Col([ # 2.0
+                    html.Div(dbc.Row(dbc.Col([
                             html.Div(html.P(
                                 [
                                     "The total spending on ",
@@ -332,16 +246,14 @@ app.layout = html.Div(
                                     " in ",
                                     html.Span(id='total-spending'),
                                 ]),className='app-total-budget-par'),
-                            # 2.1
                             dbc.Tooltip(
                                 " Community Supervision, Corrections, Courts, Police, Prosecutors, Public Defenders, Sheriff ",
-                                target="tooltip-carc-target", #style={"background-color": "#ffcc99"}
+                                target="tooltip-carc-target",
                             ),
-                            # 2.2
                             dbc.Tooltip(
                                 ''' Health and Human Services (HHS), Parks and Recreation, Public Health,
                                  Arts and Culture, Civic and Community Engagement, Employment, Housing ''',
-                                target="tooltip-health-target",#style={"background-color": "#99ccff"}
+                                target="tooltip-health-target",
                             ),
                         ],xs=12,sm=12,lg=8),justify="center")),
                         html.Div([
@@ -352,7 +264,6 @@ app.layout = html.Div(
                                               lg=8,xs=10,sm=10),justify='center')
                             ]),
                         dbc.Row([
-                            #dbc.Col(html.P('-1')),
                             dbc.Col(
                                 html.Div(
                                     dcc.Slider(id='slider',
@@ -371,7 +282,6 @@ app.layout = html.Div(
                                         }
                                       ), id='slider-container',
                                 ),lg=6,xs=12,sm=12),
-                            #dbc.Col(html.P('1')),
                         ],justify='center'),
                         dbc.Row(dbc.Col([
                             html.Div(id='guess-graph-container',
@@ -381,10 +291,9 @@ app.layout = html.Div(
                                 dcc.Graph(id='guess-spending',),
                                     ],style={'background-color':'white'}
                                 )],lg=10,xs=10,sm=10),justify='center'),
-                        dbc.Row(dbc.Col(html.A(dbc.Button('Guess', size='lg', id='submit-button'),href='#answer'),lg=4,xs=6,sm=6,style={'margin-top':'40px'}),align='center',justify='center'),
+                        dbc.Row(dbc.Col(html.A(dbc.Button('Guess', size='lg', id='submit-button'),href='#answer'),
+                                lg=4,xs=6,sm=6,style={'margin-top':'40px'}),align='center',justify='center'),
                     ],className='guess'),
-
-                # answer div
                 html.Div(id ='answer',children=[html.P(" ",style={'margin-top':'30px'})],className='answer'),
         html.Div(id='more-info-container', style={"display":"none"},
                 children=[
@@ -400,18 +309,42 @@ app.layout = html.Div(
                                 dbc.Col(
                                     dcc.Tabs(
                                         id = 'field',value = 'Carceral and Health Department Breakdown',
-                                        children = [dcc.Tab(label='Carceral and Health Department Breakdown', value='Carceral and Health Department Breakdown',children=[html.H5("Average Carceral and Health Spending 2017-2020, broken down by department"),dcc.Graph(id='byCategory'),html.P('Click on the small legend squares to remove a category, double click to isolate a category. Double click again to reset.')]),
-                                            dcc.Tab(label='Departmental Spending by Year',children=[html.H5("Departmental Spending by Year, 2017-2020"),dcc.Graph(id='byYear'),html.P('Click on the small legend symbols to remove a category, double click to isolate a category. Double click again to reset.')]),
-                                            dcc.Tab(label='Average Carceral Spending',children=[html.H5("Average Carceral Spending 2017-2020"),dcc.Graph(id='carcFig'),html.P('Click on the small legend squares to remove a category, double click to isolate a category:')]),
-                                            dcc.Tab(label='Average Health and Support Spending',children=[html.H5("Average Health and Support Spending 2017-2020"),dcc.Graph(id='healthFig'),html.P('Click on the small legend squares to remove a category, double click to isolate a category. Double click again to reset.')]),
-                                            dcc.Tab(label='Average Departmental Spending', children=[html.H5("Average Departmental Spending 2017-2020"),dcc.Graph(id='deptFig'),html.P('Click on the small legend squares to remove a category, double click to isolate a category. Double click again to reset.')]),
+                                        children = [
+                                            dcc.Tab(label='Carceral and Health Department Breakdown',
+                                                    value='Carceral and Health Department Breakdown',
+                                                    children=[
+                                                        html.H5("Average Carceral and Health Spending 2017-2020, broken down by department"),
+                                                        dcc.Graph(id='byCategory'),
+                                                        html.P('Click on the small legend squares to remove a category, double click to isolate a category. Double click again to reset.')]),
+                                            dcc.Tab(label='Departmental Spending by Year',
+                                                    children=[
+                                                        html.H5("Departmental Spending by Year, 2017-2020"),
+                                                        dcc.Graph(id='byYear'),
+                                                        html.P('Click on the small legend symbols to remove a category, double click to isolate a category. Double click again to reset.')]),
+                                            dcc.Tab(label='Average Carceral Spending',
+                                                    children=[
+                                                        html.H5("Average Carceral Spending 2017-2020"),
+                                                        dcc.Graph(id='carcFig'),
+                                                        html.P('Click on the small legend squares to remove a category, double click to isolate a category:')]),
+                                            dcc.Tab(label='Average Health and Support Spending',
+                                                    children=[
+                                                        html.H5("Average Health and Support Spending 2017-2020"),
+                                                        dcc.Graph(id='healthFig'),
+                                                        html.P('Click on the small legend squares to remove a category, double click to isolate a category. Double click again to reset.')]),
+                                            dcc.Tab(label='Average Departmental Spending',
+                                                children=[
+                                                    html.H5("Average Departmental Spending 2017-2020"),
+                                                    dcc.Graph(id='deptFig'),
+                                                    html.P('Click on the small legend squares to remove a category, double click to isolate a category. Double click again to reset.')]),
                                             ],
                                     ),
                                 lg=10,xs=10,sm=10,),justify='center'),
-                            dbc.Row(dbc.Col(html.Div(html.H3("Let's see how your city compares across categories"),className='app-header-title'),lg=8,xs=12,sm=12),justify='center'),
+                            dbc.Row(dbc.Col(html.Div(html.H3("Let's see how your city compares across categories"),
+                                            className='app-header-title'),lg=8,xs=12,sm=12),justify='center'),
                             dbc.Row(dbc.Col(html.P('''The Carceral Resource Index is useful for comparing cities to each other because it quantifies
                                 relative spending, which is easier to compare than raw dollar amounts. Click through the tabs to compare
-                                your city to others based on the different categories.''',style={'text-align':'left'}),lg=8,xs=11,sm=11),justify='center'),
+                                your city to others based on the different categories.''',
+                                    style={'text-align':'left'}),lg=8,xs=11,sm=11),justify='center'),
                             dbc.Row([
                                 dbc.Col(
                                     dcc.Tabs(
@@ -419,11 +352,10 @@ app.layout = html.Div(
                                         children = [dcc.Tab(label='Similar CRI Values',value = 'Similar CRI Values', id='CRIFig'),
                                             dcc.Tab(label='Cities in the Same Region',id='regionFig'),
                                             dcc.Tab(label='Similar Budget Size',id='budgetFig'),
-                                            dcc.Tab(label='Similar Police Budget Size',id='policeFig'),#[html.H5('Similar Police Budget Size',style={"padding-top":"12px"}),dcc.Graph(id='policeFig')]),
+                                            dcc.Tab(label='Similar Police Budget Size',id='policeFig'),
                                             ],
                                     ),
                                 lg=10,xs=10,sm=10,),
-                                #dbc.Col(dcc.Graph(id='compareFig'),lg=6,xs=11,sm=11),
                                 ],align='center',justify='center')],className='compareexplore'),
                         ]),
                     html.Div([
@@ -444,7 +376,8 @@ app.layout = html.Div(
                             dbc.Row(dbc.Col(html.P('''Importantly, the lab does not prescribe a particular CRI value cities ought to achieve.
                                             Even a city with a positive CRI like Washington D.C. (0.53) can still have an $800 million investment in carceral systems which
                                             cause immense harm. Rather, the index provides community members and policy makers alike an insight into the relationship
-                                            between city spending on carceral systems versus health and supportive services.'''), lg=8,xs=10,sm=10),justify='center',style={'text-align':'left'}),
+                                            between city spending on carceral systems versus health and supportive services.'''),
+                                            lg=8,xs=10,sm=10),justify='center',style={'text-align':'left'}),
                             dbc.Row(dbc.Col(html.P(["You can ",html.A('read more about our CRI research on our wesbite.',href='https://www.healthinjustice.org/copy-of-carceral-resource-index',target="_blank")],style={'font-size':'20px'}), width=8),justify='center'),
                             dbc.Row(dbc.Col(html.A(dbc.Button("Learn More",size='md'),href='https://www.healthinjustice.org/copy-of-carceral-resource-index',target="_blank")))
                         ],className='whyDiv'),
@@ -493,8 +426,7 @@ app.layout = html.Div(
               Input('city-dropdown','value'))
 
 def make_filters(City):
-    '''Create filtered dataframes once and store them as dictionaries in the browswer so that this expensive
-    task only needs to be performed once'''
+    '''Create filtered dataframes once and store them as dictionaries in the browswer.'''
     city_df = city_groupby.get_group(City)
     #print(city_df)
     city_df2020 = city_df[city_df['Year']=='2020'].reset_index()
@@ -502,7 +434,6 @@ def make_filters(City):
     CRI2020 = city_df2020.at[0,'CRI']
     return city_df.to_dict(),city_df2020.to_dict(),TOTAL, CRI2020
 
-#blues
 @app.callback(Output('guess-spending','figure'),
               Output('guess-dict-store','data'),
               Output('total-spending','children'),
@@ -511,6 +442,13 @@ def make_filters(City):
                Input('city-dropdown','value'),
                Input('total-store','data')])
 def make_guess(value,City,total):
+    '''make_guess takes the total budget $ (eg. $800,000,000), the CRI slider
+    drag value (-1 to +1), and the city name from the dropdown menu. The health
+    and carceral spending numbers are calculated using the CRI formula. Then
+    a figure is created displaying these values in a bar graph. As the user
+    drags the CRI slider, the graph updates to show the new money values.
+    The dictionary used to create the guess figure is also stored away so that it can
+    be used to compare to the real answer when the user presses 'Guess'. '''
     T = total
     CRI = value
     # calc health spending
@@ -561,10 +499,12 @@ def make_guess(value,City,total):
               [Input('city-dropdown','value'),
               Input('slider', 'drag_value')])
 def display_value(city,value):
+    '''display_value shows the CRI value selected by the user as they drag the
+    slider handle between -1 and +1. '''
     result = "Your guess: {}'s Carceral Resource Index = {}".format(city,value)
 
     return result
-#show new graph, correct slider after pressing "Guess"
+
 @app.callback(Output("answer","children"),
               Input('slider','value'),
               Input('submit-button', 'n_clicks'),
@@ -575,6 +515,15 @@ def display_value(city,value):
               State('guess-dict-store','data')
         )
 def show_results(guessVal,n_clicks,City,city_df2020_data,total,cri,guess_dict):
+    '''show_results takes the city name, the guess dictionary previously stored,
+     the real city data stored away, the current value from the slider, and
+     whether the submit button has been clicked. If 'Guess' button has been
+     clicked, the guess dictionary and the city data dictionary are converted
+     into pandas dataframes and a bar graph is created to compare the difference.
+     The difference in CRI values (guess and actual for 2020) are also displayed.
+     This also populates a 'Try Another City' button and a prompt for the user
+     to keep scrolling down.
+    '''
     if n_clicks is None:
         raise PreventUpdate
     else:
@@ -663,6 +612,11 @@ def show_results(guessVal,n_clicks,City,city_df2020_data,total,cri,guess_dict):
     Input("field", "value")]
 )
 def explore_budget(n_clicks,City,city_df_dict,field):
+    '''explore_budget displays 5 new figures that explore the city budget data
+    further, once the user presses 'Guess'. The "more-info-container",
+    containing the exploratory figures, more text, more in depth "why"
+    and "what can you do" sections is also now displayed.
+    '''
     #print(city_df_dict)
     if n_clicks is None:
         raise PreventUpdate
@@ -692,7 +646,7 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                             x=1,
                                             y=-0.6),
                             )
-        byYear = px.line(no0.sort_values('Dollar Amount',ascending=False),
+        byYear = px.line(no0.sort_values('Year',ascending=True),
                         x="Year",
                         y="Dollar Amount",
                         color="Spending Type",
@@ -829,6 +783,8 @@ def explore_budget(n_clicks,City,city_df_dict,field):
               ]
              )
 def city_comparisons(n_clicks,City):
+    '''city_comparisons displays 3 new figures that the city CRI data to other
+    cities by different categories, once the user presses 'Guess'.'''
     if n_clicks is None:
         raise PreventUpdate
     else:
