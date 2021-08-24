@@ -1,6 +1,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body{
     font-family: Avenir, sans-serif;
@@ -9,6 +10,7 @@ body{
     text-align: center;
     font-size: 18px;
     font-size-adjust: auto;
+    overflow-x: hidden;
 
 }
 h5, .h5{
