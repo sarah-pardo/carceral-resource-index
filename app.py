@@ -95,6 +95,8 @@ guessFig75.update_layout(legend=dict(
                         hoverlabel=dict(
                             bgcolor="white",
                             ),
+                        xaxis=dict(fixedrange=True),
+                        yaxis=dict(fixedrange=True)
                     )
 
 # Answer fig for Tulsa
@@ -133,6 +135,8 @@ answerFig58.update_layout(legend=dict(
                         hoverlabel=dict(
                             bgcolor="white",
                             ),
+                        xaxis=dict(fixedrange=True),
+                        yaxis=dict(fixedrange=True)
                     )
 
 external_stylesheets = [dbc.themes.BOOTSTRAP]
@@ -487,6 +491,8 @@ def make_guess(value,City,total):
                             hoverlabel=dict(
                                 bgcolor="white",
                                 ),
+                            xaxis=dict(fixedrange=True),
+                            yaxis=dict(fixedrange=True)
                         )
     #guessFig.update_layout(height = 500)
 
@@ -575,6 +581,8 @@ def show_results(guessVal,n_clicks,City,city_df2020_data,total,cri,guess_dict):
                                 hoverlabel=dict(
                                     bgcolor="white",
                                     ),
+                                xaxis=dict(fixedrange=True),
+                                yaxis=dict(fixedrange=True)
                             )
         #resultsFig.update_layout(height = 600)
         CRI = cri
@@ -646,6 +654,8 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                             xanchor="right",
                                             x=1,
                                             y=-0.6),
+                                xaxis=dict(fixedrange=True),
+                                yaxis=dict(fixedrange=True)
                             )
         byYear = px.line(no0.sort_values('Year',ascending=True),
                         x="Year",
@@ -665,6 +675,8 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                             xanchor="right",
                                             x=1,
                                             y=-0.6),
+                                xaxis=dict(fixedrange=True),
+                                yaxis=dict(fixedrange=True)
                             )
         deptFig = px.bar(city_df.groupby(['Category','Spending Type']).mean().reset_index().sort_values('Dollar Amount',ascending=False),
                        x="Spending Type",
@@ -681,7 +693,9 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                     ),
                                 hoverlabel=dict(
                                     bgcolor="white",
-                                    ))
+                                    ),
+                                    xaxis=dict(fixedrange=True),
+                                    yaxis=dict(fixedrange=True))
         try:
             carcFig = px.bar(byCategoryNo0.loc[byCategoryNo0['Category']=='Carceral'].sort_values('Dollar Amount',ascending=False),
                                   x="Category",
@@ -704,6 +718,8 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                                 xanchor="right",
                                                 x=1,
                                                 y=-0.6),
+                                    xaxis=dict(fixedrange=True),
+                                    yaxis=dict(fixedrange=True)
                                 )
         except:
             carcFig = px.bar(city_df[(city_df['Category']=='Carceral') &(city_df['Year']=='2020')],
@@ -727,6 +743,8 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                                 xanchor="right",
                                                 x=1,
                                                 y=-0.6),
+                                    xaxis=dict(fixedrange=True),
+                                    yaxis=dict(fixedrange=True)
                                 )
         try:
             healthFig = px.bar(byCategoryNo0.loc[byCategoryNo0['Category']=='Health and Support'].sort_values('Dollar Amount',ascending=False),
@@ -749,6 +767,8 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                                 xanchor="right",
                                                 x=1,
                                                 y=-0.6),
+                                    xaxis=dict(fixedrange=True),
+                                    yaxis=dict(fixedrange=True)
                                 )
         except:
             healthFig = px.bar(city_df[(city_df['Category']=='Health and Support') &(city_df['Year']=='2020')],
@@ -772,6 +792,8 @@ def explore_budget(n_clicks,City,city_df_dict,field):
                                                 xanchor="right",
                                                 x=1,
                                                 y=-0.6),
+                                    xaxis=dict(fixedrange=True),
+                                    yaxis=dict(fixedrange=True)
                                 )
         return byCategory, byYear, deptFig, carcFig, healthFig, {"display":"block"}
 # Comparison charts
@@ -807,7 +829,9 @@ def city_comparisons(n_clicks,City):
                             ),
                         hoverlabel=dict(
                             bgcolor="white",
-                            ),)
+                            ),
+                        xaxis=dict(fixedrange=True),
+                        yaxis=dict(fixedrange=True))
         total_spending = city_groupby.first().sort_values('Total Spending').reset_index()
         budgetIndex = total_spending.index[total_spending['City']==City].tolist()[0]
         if (budgetIndex<3):
@@ -824,12 +848,13 @@ def city_comparisons(n_clicks,City):
                            color_continuous_scale=[[0,"darkblue"], [1,"lightgreen"]],
                           )
         budgetFig.update_traces(texttemplate='%{text:.2s}')
-        budgetFig.update_layout(xaxis={'categoryorder':'total descending'},uniformtext_minsize=8, uniformtext_mode='hide',font=dict(
+        budgetFig.update_layout(xaxis=dict(categoryorder='total descending',fixedrange=True),uniformtext_minsize=8, uniformtext_mode='hide',font=dict(
                                 family='Avenir',
                                 ),
                             hoverlabel=dict(
                                 bgcolor="white",
-                                ),)
+                                ),
+                                yaxis=dict(fixedrange=True))
         region = region_dct[City]
         cities_in_region = region_groupby.get_group(region).groupby('City').first().reset_index()
         regionFig = px.bar(cities_in_region,
@@ -840,12 +865,14 @@ def city_comparisons(n_clicks,City):
                            range_color=[-1,1],
                            color_continuous_scale=[[0,"darkblue"], [1,"lightgreen"]],
                           )
-        regionFig.update_layout(xaxis={'categoryorder':'total descending'},font=dict(
+        regionFig.update_layout(xaxis=dict(categoryorder='total descending',fixedrange=True),
+                                font=dict(
                                 family='Avenir',
                                 ),
                             hoverlabel=dict(
                                 bgcolor="white",
-                                ),)
+                                ),
+                                yaxis=dict(fixedrange=True))
         #print(police_spending.index[police_spending['City']==City])
         policeIndex = police_spending.index[police_spending['City']==City].tolist()[0]
         if (policeIndex<3):
@@ -862,13 +889,14 @@ def city_comparisons(n_clicks,City):
                            color_continuous_scale=[[0,"darkblue"], [1,"lightgreen"]],
                           )
         policeFig.update_traces(texttemplate='%{text:.2s}')
-        policeFig.update_layout(xaxis={'categoryorder':'total descending'},uniformtext_minsize=8, uniformtext_mode='hide',
+        policeFig.update_layout(xaxis=dict(categoryorder='total descending',fixedrange=True),uniformtext_minsize=8, uniformtext_mode='hide',
                                 font=dict(
                                     family='Avenir',
                                     ),
                                 hoverlabel=dict(
                                     bgcolor="white",
-                                    ))
+                                    ),
+                                    yaxis=dict(fixedrange=True))
         return (
                 [html.H5('Cities with most similar 2020 CRI values compared to {}'.format(City)),dcc.Graph(figure=CRIFig)],
                 [html.H5('Cities with similar sized 2020 budgets compared to {}'.format(City)),dcc.Graph(figure=budgetFig)],
