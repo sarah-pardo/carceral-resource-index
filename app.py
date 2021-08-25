@@ -148,10 +148,11 @@ app.title = "Carceral Resource Index"
 app.layout = html.Div(
         children=[
             html.Div([
+                dbc.Row(dbc.Col(html.A(html.Img(src='/HIJwhitelogo.webp',style={'background-color': '#d22328','padding':'10px','margin-left':'50px'}),href='https://www.healthinjustice.org'),xs=8,sm=8,lg=2,md=2,xl=1),justify='left'),
                 dbc.Row(dbc.Col(
-                        html.Div(html.H3("How well do you know your city's spending priorities?"),
+                        html.Div(html.H2("How well do you know your city's spending priorities?"),
                             className='app-header-title'),
-                        xs=12,sm=12,lg=8),justify='center'
+                        xs=11,sm=12,lg=8),justify='center'
                        ),
                 dbc.Row(dbc.Col(
                         html.P([
