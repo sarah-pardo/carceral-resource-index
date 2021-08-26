@@ -152,7 +152,7 @@ app.title = "Carceral Resource Index"
 app.layout = html.Div(
         children=[
             html.Div([
-                dbc.Row(dbc.Col(html.A(html.Img(src='/HIJwhitelogo.webp',style={'background-color': '#d22328','padding':'10px','margin-left':'50px'}),href='https://www.healthinjustice.org'),xs=8,sm=8,lg=2,md=2,xl=1),justify='left'),
+                html.Header(dbc.Row(dbc.Col(html.A(html.Img(src='/HIJLogo.png',style={'padding':'15px','margin-left':'50px','width':'200px','size-adjust':'None'}),href='https://www.healthinjustice.org'),xs=6,sm=6,md=3,lg=2,xl=2),justify='left')),
                 dbc.Row(dbc.Col(
                         html.Div(html.H2("How well do you know your city's spending priorities?"),
                             className='app-header-title'),
@@ -363,62 +363,62 @@ app.layout = html.Div(
                                 lg=10,xs=10,sm=10,),
                                 ],align='center',justify='center')],className='compareexplore'),
                         ]),
-                    html.Div([
-                            dbc.Row(dbc.Col(html.H3('Why CRI')),justify='center'),
-                            dbc.Row(dbc.Col([
-                                            html.P('''Over the last several decades, many U.S. cities have defunded healthcare, housing assistance, benefit programs,
-                                                    substance use treatment, and community engagement, all of which have been shown to prevent the need for carceral
-                                                    systems in the first place.'''),
-                                            html.P('''To varying degrees, municipalities have all bought into the idea
-                                            that public safety requires surveillance and punishment and
-                                            the confinement of people in prisons. But decades of research have shown this approach has not made our communities
-                                           safer nor healthier.'''),
-                                            html.P('''The Carceral Resource Index measures where cities stand:
-                                          do city leaders that purport to value community health and safety make spending decisions based on scientific
-                                          evidence, or do they continue to pander to fear-based and racialized "law and order" rhetoric? '''),
-                                ],
-                                lg=8,xs=10,sm=10),justify='center',style={'text-align':'left'}),
-                            dbc.Row(dbc.Col(html.P('''Importantly, the lab does not prescribe a particular CRI value cities ought to achieve.
-                                            Even a city with a positive CRI like Washington D.C. (0.53) can still have an $800 million investment in carceral systems which
-                                            cause immense harm. Rather, the index provides community members and policy makers alike an insight into the relationship
-                                            between city spending on carceral systems versus health and supportive services.'''),
-                                            lg=8,xs=10,sm=10),justify='center',style={'text-align':'left'}),
-                            dbc.Row(dbc.Col(html.P(["You can ",html.A('read more about our CRI research on our wesbite.',href='https://www.healthinjustice.org/copy-of-carceral-resource-index',target="_blank")],style={'font-size':'20px'}), width=8),justify='center'),
-                            dbc.Row(dbc.Col(html.A(dbc.Button("Learn More",size='md'),href='https://www.healthinjustice.org/copy-of-carceral-resource-index',target="_blank")))
-                        ],className='whyDiv'),
-                    html.Div([
-                            dbc.Row(dbc.Col(html.H3('What can you do?')),justify='center'),
-                            dbc.Row(dbc.Col([html.P('''There are many groups across the United States organizing for investment
-                                                    in the health and wellbeing of their communities on one hand, and divestment from police,
-                                                    jails, prisons, and related institutions on the other. '''),
-                                            html.P('''Below is small sampling of organizations
-                                            working towards the decriminalization of our communities, the abolition of the Prison Industrial Complex,
-                                            and the empowerment of affected communities and individuals.
-                                            Many of these organizations offer educational resources and accept monetary donations. '''),
-                                            html.P('''There are also similar
-                                            local groups in towns and cities around the country which rely on volunteer organizing.''')],lg=8,xs=10,sm=10),justify='center',style={'text-align':'left'}),
-                            dbc.Row(dbc.Col(html.P([
-                                    html.P(html.A("Interrupting Criminalization",href='https://www.interruptingcriminalization.com/',target="_blank")),
-                                    html.P(html.A("The National Council for Incarcerated and Formerly Incarcerated Women and Girls",href='https://www.nationalcouncil.us/',target="_blank")),
-                                    html.P(html.A("#DefundThePolice",href='https://defundthepolice.org/ ',target="_blank")),
-                                    html.P(html.A("Movement 4 Black Lives Invest-Divest Policy Platform",href='https://m4bl.org/policy-platforms/invest-divest/',target="_blank")),
-                                    html.P(html.A("Critical Resistance",href='http://criticalresistance.org/',target="_blank")),
-                                    html.P(html.A("Families for Justice as Healing",href='https://www.justiceashealing.org/',target="_blank")),
-                                    html.P(html.A("Black and Pink",href='https://www.blackandpink.org/',target="_blank")),
-                                    html.P(html.A("Action Center on Race & The Economy",href='https://acrecampaigns.org/?s=defund+the+police',target="_blank")),
-                                    html.P(html.A("Black Lives Matter",href='https://blacklivesmatter.com/blm-demands/',target="_blank")),
-                                    html.P(html.A("ACLU Cops and No Counselors Report",href='aclu.org/issues/juvenile-justice/school-prison-pipeline/cops-and-no-counselors',target="_blank")),
-                                    html.P(html.A("Project NIA",href='https://project-nia.org/',target="_blank")),
-                            ],style={'font-size':'20px'}),xs=11,sm=11,lg=10),justify='center')
-                        ],className='whatDiv'),
                 ]),
+            html.Div([
+                    dbc.Row(dbc.Col(html.H3('Why CRI')),justify='center'),
+                    dbc.Row(dbc.Col([
+                                    html.P('''Over the last several decades, many U.S. cities have defunded healthcare, housing assistance, benefit programs,
+                                            substance use treatment, and community engagement, all of which have been shown to prevent the need for carceral
+                                            systems in the first place.'''),
+                                    html.P('''To varying degrees, municipalities have all bought into the idea
+                                    that public safety requires surveillance and punishment and
+                                    the confinement of people in prisons. But decades of research have shown this approach has not made our communities
+                                   safer nor healthier.'''),
+                                    html.P('''The Carceral Resource Index measures where cities stand:
+                                  do city leaders that purport to value community health and safety make spending decisions based on scientific
+                                  evidence, or do they continue to pander to fear-based and racialized "law and order" rhetoric? '''),
+                        ],
+                        lg=8,xs=10,sm=10),justify='center',style={'text-align':'left'}),
+                    dbc.Row(dbc.Col(html.P('''Importantly, the lab does not prescribe a particular CRI value cities ought to achieve.
+                                    Even a city with a positive CRI like Washington D.C. (0.53) can still have an $800 million investment in carceral systems which
+                                    cause immense harm. Rather, the index provides community members and policy makers alike an insight into the relationship
+                                    between city spending on carceral systems versus health and supportive services.'''),
+                                    lg=8,xs=10,sm=10),justify='center',style={'text-align':'left'}),
+                    dbc.Row(dbc.Col(html.P(["You can ",html.A('read more about our CRI research on our wesbite.',href='https://www.healthinjustice.org/copy-of-carceral-resource-index',)],style={'font-size':'20px'}), width=8),justify='center'),
+                    dbc.Row(dbc.Col(html.A(dbc.Button("Learn More",size='md'),href='https://www.healthinjustice.org/copy-of-carceral-resource-index')))
+                ],className='whyDiv'),
+            html.Div([
+                    dbc.Row(dbc.Col(html.H3('What can you do?')),justify='center'),
+                    dbc.Row(dbc.Col([html.P('''There are many groups across the United States organizing for investment
+                                            in the health and wellbeing of their communities on one hand, and divestment from police,
+                                            jails, prisons, and related institutions on the other. '''),
+                                    html.P('''Below is small sampling of organizations
+                                    working towards the decriminalization of our communities, the abolition of the Prison Industrial Complex,
+                                    and the empowerment of affected communities and individuals.
+                                    Many of these organizations offer educational resources and accept monetary donations. '''),
+                                    html.P('''There are also similar
+                                    local groups in towns and cities around the country which rely on volunteer organizing.''')],lg=8,xs=10,sm=10),justify='center',style={'text-align':'left'}),
+                    dbc.Row(dbc.Col(html.P([
+                            html.P(html.A("Interrupting Criminalization",href='https://www.interruptingcriminalization.com/',target="_blank")),
+                            html.P(html.A("The National Council for Incarcerated and Formerly Incarcerated Women and Girls",href='https://www.nationalcouncil.us/',target="_blank")),
+                            html.P(html.A("#DefundThePolice",href='https://defundthepolice.org/ ',target="_blank")),
+                            html.P(html.A("Movement 4 Black Lives Invest-Divest Policy Platform",href='https://m4bl.org/policy-platforms/invest-divest/',target="_blank")),
+                            html.P(html.A("Critical Resistance",href='http://criticalresistance.org/',target="_blank")),
+                            html.P(html.A("Families for Justice as Healing",href='https://www.justiceashealing.org/',target="_blank")),
+                            html.P(html.A("Black and Pink",href='https://www.blackandpink.org/',target="_blank")),
+                            html.P(html.A("Action Center on Race & The Economy",href='https://acrecampaigns.org/?s=defund+the+police',target="_blank")),
+                            html.P(html.A("Black Lives Matter",href='https://blacklivesmatter.com/blm-demands/',target="_blank")),
+                            html.P(html.A("ACLU Cops and No Counselors Report",href='aclu.org/issues/juvenile-justice/school-prison-pipeline/cops-and-no-counselors',target="_blank")),
+                            html.P(html.A("Project NIA",href='https://project-nia.org/',target="_blank")),
+                    ],style={'font-size':'20px'}),xs=11,sm=11,lg=10),justify='center')
+                ],className='whatDiv'),
             html.Footer(dbc.Row(dbc.Col([
                         "Site designed and developed by ",
                         html.A("Sarah Pardo",href="https://www.sarahpardo.com",target="_blank",style={'color':'darkblue'}),
                         " on ",
                         html.A("Plotly Dash",href="https://dash.plotly.com/introduction",target="_blank",style={'color':'darkblue'}),
                         " for ",
-                        html.A("The Health in Justice Action Lab",href="https://www.healthinjustice.org/",target="_blank",style={'color':'darkred'})
+                        html.A("The Health in Justice Action Lab",href="https://www.healthinjustice.org/",style={'color':'darkred'})
                         ],xs=11,sm=11,lg=12),justify='center'))
             ])
 
