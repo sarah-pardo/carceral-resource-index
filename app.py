@@ -330,7 +330,7 @@ app.layout = html.Div(
                                                     children=[
                                                         html.H5("Average Carceral Spending 2017-2020"),
                                                         dcc.Graph(id='carcFig'),
-                                                        html.P('Click on the small legend squares to remove a category, double click to isolate a category:')]),
+                                                        html.P('Click on the small legend squares to remove a category, double click to isolate a category. Double click again to reset.')]),
                                             dcc.Tab(label='Average Health and Support Spending',
                                                     children=[
                                                         html.H5("Average Health and Support Spending 2017-2020"),
@@ -340,7 +340,7 @@ app.layout = html.Div(
                                                 children=[
                                                     html.H5("Average Departmental Spending 2017-2020"),
                                                     dcc.Graph(id='deptFig'),
-                                                    html.P('Click on the small legend squares to remove a category, double click to isolate a category. Double click again to reset.')]),
+                                                    ]),
                                             ],
                                     ),
                                 lg=10,xs=10,sm=10,),justify='center'),
